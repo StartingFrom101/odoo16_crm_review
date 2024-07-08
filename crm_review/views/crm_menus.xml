@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem
+        id="crm_review_menu"
+        name="CRM"
+        sequence="10" />
+
+</odoo>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="lead_menu"
+        name="Lead"
+        action="lead_action"
+        parent="crm_review_menu"
+        sequence="10" />
+
+
+    <record id="lead_action" model="ir.actions.act_window">
+        <field name="name">lead.action</field>
+        <field name="res_model">lead</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="lead_view_tree" model="ir.ui.view">
+        <field name="name">lead.view.tree</field>
+        <field name="model">lead</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" />
+                <field name="description" />
+                <field name="contact_id" string='Contact' />
+                <field name="task_ids" string='Activities' />
+            </tree>
+        </field>
+    </record>
+
+    <record id="lead_view_form" model="ir.ui.view">
+        <field name="name">lead.view.form</field>
+        <field name="model">lead</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <header>
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                        <field name="description" />
+                    </header>
+                    <group>
+                        <field name="contact_id" string="Contact" />
+                    </group>
+                    <notebook>
+                        <page name="tasks" string="Tasks and Activities">
+                            <group col='2'>
+                                <separator string="Tasks" />
+                                <field name="task_ids" nolabel='1' colspan="2" widget='one2many_list'>
+                                    <tree state="open">
+                                        <field name="name" />
+                                        <field name="description" />
+                                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
+                                        <field name="state" />
+                                        <field name="due_date" />
+                                        <field name="finished_date" />
+                                        <field name="user_id" string="Responsible" />
+                                    </tree>
+
+                                </field>
+
+                            </group>
+
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

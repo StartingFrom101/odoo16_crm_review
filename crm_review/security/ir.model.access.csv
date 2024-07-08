@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+crm_review.access_lead,access_lead,crm_review.model_lead,base.group_user,1,1,1,1
+crm_review.access_lead_task,access_lead_task,crm_review.model_lead_task,base.group_user,1,1,1,1
+crm_review.access_lead_task_tag,access_lead_task_tag,crm_review.model_lead_task_tag,base.group_user,1,1,1,1
+crm_review.access_lead_opportunity,access_lead_opportunity,crm_review.model_lead_opportunity,base.group_user,1,1,1,1

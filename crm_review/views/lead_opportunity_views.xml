@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    
+    <record id="lead_opportunity_action" model="ir.actions.act_window">
+        <field name="name">lead.opportunity.action</field>
+        <field name="res_model">lead.opportunity</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="lead_opportunity_menu" name="Opportunities" action="lead_opportunity_action" parent="crm_review_menu" />
+    
+    <record id="lead_opportunity_view_tree" model="ir.ui.view">
+        <field name="name">lead.opportunity.view.tree</field>
+        <field name="model">lead.opportunity</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="lead_id" />
+                <field name="name" />
+                <field name="description" />
+                <field name="stage" />
+                <field name="close_date" />
+                <field name="responsible_id" />
+                <field name="value" />
+            </tree>
+        </field>
+    </record>
+
+</odoo>

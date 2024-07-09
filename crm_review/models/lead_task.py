@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import api, models, fields
 class LeadTask(models.Model):
     _name = 'lead.task'
     _description = 'Lead Task'
@@ -13,3 +13,7 @@ class LeadTask(models.Model):
     due_date = fields.Date()
     finished_date = fields.Date(readonly=True)
     state = fields.Selection([('open', 'Open'), ('finished', 'Finished')], default='open') 
+    
+    def finish_task(self):
+        self.state = 'finished'
+        self.finished_date = fields.Date.today()

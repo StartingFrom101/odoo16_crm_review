@@ -4,15 +4,13 @@ class LeadOpportunity(models.Model):
     _name = 'lead.opportunity'
     _description = 'Lead Opportunity'
     
-    lead_id = fields.Many2one('crm.lead', string="Lead")
-    name = fields.Char()
+    lead_id = fields.Many2one('lead', string="Lead", required=True)
+    name = fields.Char(required=True)
     description = fields.Char()
-    stage = fields.Selection(
-        [('qualification', 'Qualification'), ('assessment', 'Assessment'), ('proposal', 'Proposal'), ('negotiation', 'Negotiation'), ('won', 'Won'), ('lost', 'Lost')],
-    )
     
-    close_date = fields.Date()
+    stage_id = fields.Many2one('lead.opportunity.stage',)
+    
     responsible_id = fields.Many2one('res.users', string='Responsible', default=lambda self: self.env.user)
+    close_date = fields.Date(readonly=True)
     value = fields.Float()
-    
     

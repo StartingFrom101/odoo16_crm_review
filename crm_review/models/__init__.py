@@ -3,3 +3,4 @@ from . import lead
 from . import lead_task
 from . import lead_task_tag
 from . import lead_opportunity
+from . import lead_opportunity_stage

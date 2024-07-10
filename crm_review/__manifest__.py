@@ -21,5 +21,7 @@
         'views/lead_task_views.xml',
         'views/lead_opportunity_views.xml',
         # 'views/templates.xml',
+        
+        'data/lead.opportunity.stage.csv',
     ],
 }

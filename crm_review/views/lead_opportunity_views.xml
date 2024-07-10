@@ -1,15 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    
     <record id="lead_opportunity_action" model="ir.actions.act_window">
-        <field name="name">lead.opportunity.action</field>
+        <field name="name">Opportunities</field>
         <field name="res_model">lead.opportunity</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
     </record>
-    
-    <menuitem id="lead_opportunity_menu" name="Opportunities" action="lead_opportunity_action" parent="crm_review_menu" />
-    
+
+    <menuitem id="lead_opportunity_menu" name="Opportunities" action="lead_opportunity_action"
+        parent="crm_review_menu" />
+
+    <record id="lead_opportunity_view_form" model="ir.ui.view">
+        <field name="name">lead.opportunity.view.form</field>
+        <field name="model">lead.opportunity</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <field name="active" invisible="1" />
+                <field name="state" invisible="1" />
+                <field name="id" invisible="1" />
+                <sheet>
+                    <header>
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                        <field name="stage_id" widget="statusbar"
+                            statusbar_visible="assessment,proposal,win,lost" />
+                    </header>
+                    <group>
+                        <field name="description" />
+                        <field name="lead_id" />
+                        <field name="value" />
+                        <field name="close_date" />
+                        <field name="responsible_id" widget="responsible" />
+                    </group>
+                    <group>
+                        <field name="confidence" string="Confidence Percentage" />
+                        <field name="estimated_value" />
+                    </group>
+                    <!-- <div attrs="{'invisible': ['|', ('state', '=', 'closed'), ('id', '=', False)]}">
+                        <div class="oe_button_box" name="button_box">
+                            <button name="prospect_opportunity" type="object" class="oe_stat_button"
+                                icon="">
+                                Prospect
+                            </button>
+                        </div>
+                    </div> -->
+                    
+                    <div  
+                        attrs="{'invisible': ['|', ('state', '=', 'closed'), ('id', '=', False)]}">
+                        <button name="won_opportunity" type="object" class="btn btn-primary">
+                            Won
+                        </button>
+                        <button name="lost_opportunity" type="object" class="btn btn-secondary">
+                            Lost
+                        </button>
+                    </div>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
     <record id="lead_opportunity_view_tree" model="ir.ui.view">
         <field name="name">lead.opportunity.view.tree</field>
         <field name="model">lead.opportunity</field>
@@ -18,7 +69,7 @@
                 <field name="lead_id" />
                 <field name="name" />
                 <field name="description" />
-                <field name="stage" />
+                <field name="stage_id" />
                 <field name="close_date" />
                 <field name="responsible_id" />
                 <field name="value" />
@@ -26,4 +77,37 @@
         </field>
     </record>
 
+    <record id="lead_opportunity_view_kanban" model="ir.ui.view">
+        <field name="name">lead.opportunity.view.kanban</field>
+        <field name="model">lead.opportunity</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage_id">
+                <field name="lead_id" />
+                <field name="name" />
+                <field name="stage_id" />
+                <field name="description" />
+                <field name="responsible_id" />
+                <field name="close_date" />
+                <field name="value" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <field name="lead_id" />
+                            <div class="oe_kanban_details">
+                                <p>
+                                    <b>
+                                        <field name="name" />
+                                    </b>
+                                </p>
+                                <p>
+                                    <field name="description" />
+                                </p>
+                            </div>
+                            <span>$<field name="value" /></span>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
 </odoo>

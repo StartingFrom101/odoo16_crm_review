@@ -2,7 +2,7 @@
 <odoo>
     <menuitem
         id="crm_review_menu"
-        name="CRM"
+        name="CRM Review"
         sequence="10" />
 
 </odoo>

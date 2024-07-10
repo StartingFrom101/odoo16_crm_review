@@ -22,7 +22,7 @@
                 <field name="name" />
                 <field name="description" />
                 <field name="contact_id" string='Contact' />
-                <field name="task_ids" string='Activities' />
+                <!-- <field name="task_ids" string='Activities' /> -->
             </tree>
         </field>
     </record>
@@ -48,7 +48,7 @@
                                 <!-- <separator string="Tasks" /> -->
                                 <field name="task_ids" nolabel='1' colspan="2"
                                     widget='one2many_list'>
-                                    <tree state="open">
+                                    <tree>
                                         <field name="name" />
                                         <field name="description" />
                                         <field name="tag_ids" widget="many2many_tags"
@@ -57,6 +57,8 @@
                                         <field name="due_date" />
                                         <field name="finished_date" />
                                         <field name="user_id" string="Responsible" />
+                                            <button states="open" string="Finish" name="finish_task" type="object"
+                                                class="oe_highlight" />
                                     </tree>
                                 </field>
                             </group>

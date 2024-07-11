@@ -24,14 +24,17 @@
                             <field name="name" />
                         </h1>
                         <field name="stage_id" widget="statusbar"
-                            statusbar_visible="assessment,proposal,win,lost" />
+                            statusbar_visible="assessment,proposal,win,lost" 
+                            options="{'clickable': 1}"
+                            attrs="{'invisible': ['|', ('stage_name', '=', 'won'), ('stage_name', '=', 'lost')]}"/> 
                     </header>
                     <group>
                         <field name="description" />
                         <field name="lead_id" />
                         <field name="value" />
                         <field name="close_date" />
-                        <field name="responsible_id" widget="responsible" />
+                        <field name="responsible_id" />
+                        <field name="stage_name" />
                     </group>
                     <group>
                         <field name="confidence" string="Confidence Percentage" />

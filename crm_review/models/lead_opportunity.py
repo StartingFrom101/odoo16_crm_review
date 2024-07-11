@@ -14,6 +14,7 @@ class LeadOpportunity(models.Model):
     description = fields.Char()
     
     stage_id = fields.Many2one('lead.opportunity.stage', string="Stage", required=True, default=lambda self: self.env['lead.opportunity.stage']._get_default_stage_id()) 
+    stage_name = fields.Char(related='stage_id.name', readonly=True, string='Stage Name')
 
     responsible_id = fields.Many2one('res.users', string='Responsible', default=lambda self: self.env.user)
     close_date = fields.Date(readonly=True)
@@ -23,6 +24,8 @@ class LeadOpportunity(models.Model):
     estimated_value = fields.Float(compute='_compute_estimated_value', readonly=True)
     active = fields.Boolean(default=True)
     state = fields.Selection([('open', 'Open'), ('closed', 'Closed')], default='open', readonly=True)
+    
+    
 
     def lost_opportunity(self):
         for opportunity in self:
@@ -49,3 +52,4 @@ class LeadOpportunity(models.Model):
     def prospect_opportunity(self):
         for opportunity in self:
             opportunity.stage_id = opportunity.stage_id._get_prospect_stage()
+            

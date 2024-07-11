@@ -1,8 +1,15 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 class LeadOpportunityStage(models.Model):
     _name = 'lead.opportunity.stage'
     _description = 'Lead Opportunity Stage'
+
+    @api.model
+    def stages(self, present_ids, domain, **kwargs):
+        stages = self.env['lead.opportunity.stage'].search([]).name_get()
+        return stages, None
+    
+    _group_by_full = { 'stage_id': stages}
 
     _sql_constraints = [
         ('name_uniq', 'unique (name)', 'Stage name already exists!'),

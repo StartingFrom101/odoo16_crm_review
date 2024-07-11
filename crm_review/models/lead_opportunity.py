@@ -7,7 +7,12 @@ class LeadOpportunity(models.Model):
         ('value_above_zero', 'CHECK(value > 0)', 'Value must be above zero!'),
         ('confidence_between_1_and_10', 'CHECK(confidence >= 1 and confidence <= 100)', 'Confidence must be between 1 and 100!')
     ]
-    _order = 'value desc'
+    @api.model
+    def stages(self, present_ids, domain, **kwargs):
+        stages = self.env['lead.opportunity.stage'].search([]).name_get()
+        return stages, None
+    
+    _group_by_full = { 'stage_id': stages}
     
     lead_id = fields.Many2one('lead', string="Lead", required=True)
     name = fields.Char(required=True)
@@ -25,7 +30,8 @@ class LeadOpportunity(models.Model):
     active = fields.Boolean(default=True)
     state = fields.Selection([('open', 'Open'), ('closed', 'Closed')], default='open', readonly=True)
     
-    
+
+
 
     def lost_opportunity(self):
         for opportunity in self:

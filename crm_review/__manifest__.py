@@ -18,7 +18,8 @@
         
         'views/crm_menus.xml',
         'views/lead_views.xml',
-        'views/lead_task_views.xml',
+        'views/lead_task_views_1.xml',
+        # 'views/lead_task_views.xml',
         'views/lead_opportunity_views.xml',
         # 'views/templates.xml',
         

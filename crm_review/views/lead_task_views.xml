@@ -18,7 +18,7 @@
         <field name="name">lead.task.view.tree</field>
         <field name="model">lead.task</field>
         <field name="arch" type="xml">
-            <tree string="">
+            <tree>
                 <field name="lead_id" string="Lead" />
                 <field name="name" />
                 <field name="tag_ids" string="Tags" widget="many2many_tags" />

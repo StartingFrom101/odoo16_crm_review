@@ -3,9 +3,7 @@ from odoo.exceptions import ValidationError
 class LeadTask(models.Model):
     _name = 'lead.task'
     _description = 'Lead Task'
-    _sql_constraints = [
-    ]
-    _order = 'due_date desc'
+    _order = 'state desc, due_date asc'
     
     
     lead_id = fields.Many2one('lead', string="Lead")

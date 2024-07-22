@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+crm_replicate.access_crm_opportunity,access_crm_opportunity,crm_replicate.model_crm_opportunity,base.group_user,1,1,1,1
+crm_replicate.access_crm_opportunity_tag,access_crm_opportunity_tag,crm_replicate.model_crm_opportunity_tag,base.group_user,1,1,1,1
+crm_replicate.access_crm_opportunity_stage,access_crm_opportunity_stage,crm_replicate.model_crm_opportunity_stage,base.group_user,1,1,1,1
+crm_replicate.access_crm_activity,access_crm_activity,crm_replicate.model_crm_activity,base.group_user,1,1,1,1
+crm_replicate.access_crm_activity_type,access_crm_activity_type,crm_replicate.model_crm_activity_type,base.group_user,1,1,1,1

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="hospital_doctor_view_tree" model="ir.ui.view">
+        <field name="name">hospital.doctor.view.tree</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref" />
+                <field name="name" />
+                <field name="gender" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="hospital_doctor_view_form" model="ir.ui.view">
+        <field name="name">hospital.doctor.view.form</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget name='web_ribbon' title="Archived" bg-color="bg-danger" attrs="{'invisible': [('active', '=', True)]}" />
+                    <group>
+                        <field name="ref" />
+                        <field name="name" />
+                        <field name="gender" />
+                        <field name="active" invisible="1" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <!-- <field name="activity_ids" widget="mail_activity"/> -->
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+            
+        </field>
+    </record>
+
+    <record id="hospital_doctor_action" model="ir.actions.act_window">
+        <field name="name">Doctors</field>
+        <field name="res_model">hospital.doctor</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem
+        id="doctor_menu"
+        name="Doctors"
+        parent="hospital_root_menu"
+        action='hospital_doctor_action'
+        sequence="10" />
+</odoo>

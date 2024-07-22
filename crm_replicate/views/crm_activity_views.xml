@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="crm_activity_action" model="ir.actions.act_window">
+        <field name="name">Acitivities</field>
+        <field name="res_model">crm.activity</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="crm_activity_menu"
+        name="My Activities"
+        action="crm_activity_action"
+        parent="crm_sales_menu"
+        sequence="10"/>
+</odoo>

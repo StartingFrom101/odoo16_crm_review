@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root menu -->
+    <menuitem
+        id="crm_replicate_menu"
+        name="Replicated CRM"
+        sequence="10"/>
+
+    <menuitem
+        id="crm_sales_menu"
+        name="Sales"
+        parent="crm_replicate_menu"
+        sequence="10"/>
+</odoo>

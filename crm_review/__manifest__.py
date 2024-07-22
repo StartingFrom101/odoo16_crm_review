@@ -14,7 +14,11 @@
 
     # always loaded
     'data': [
-        'security/ir.model.access.csv',
+        'security/ir.model.access.csv', 
+        
+        'data/lead.opportunity.stage.csv',
+        
+        'wizard/create_lead_task_view.xml',
         
         'views/crm_menus.xml',
         'views/lead_views.xml',
@@ -23,6 +27,5 @@
         'views/lead_opportunity_views.xml',
         # 'views/templates.xml',
         
-        'data/lead.opportunity.stage.csv',
     ],
 }

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="crm_opportunity_action" model="ir.actions.act_window">
+        <field name="name">My Pipeline</field>
+        <field name="res_model">crm.opportunity</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <menuitem
+        id="crm_opportunity_menu"
+        name="My Pipeline"
+        action="crm_opportunity_action"
+        parent="crm_sales_menu"
+        sequence="10" />
+
+    <record id="crm_opportunity_view_kanban" model="ir.ui.view">
+        <field name="name">crm.opportunity.view.kanban</field>
+        <field name="model">crm.opportunity</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage_id" class="o_kanban_small_column o_opportunity_kanban">
+                <field name="stage_id" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_content oe_kanban_global_click flex-grow-1">
+                            <div class="o_kanban_record_title oe_kanban_details">
+                                <strong>
+                                    <field name="name" modifiers="{&quot;required&quot;: true}" />
+                                </strong>
+                            </div>
+                            <div class="o_kanban_record_subtitle">
+                                <field name="revenue" widget="monetary" />
+                            </div>
+                            <div>
+                                <field name="partner_id" />
+                            </div>
+                            <div>
+                                <field name="tag_ids" widget="many2many_tags"
+                                    options="{'color_field': 'color'}" />
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="crm_opportunity_view_tree" model="ir.ui.view">
+        <field name="name">Pipeline</field>
+        <field name="model">crm.opportunity</field>
+        <field name="arch" type="xml">
+            <tree string="Pipeline">
+                <field name="name" />
+                <field string="Contact Name" name='partner_id' />
+                <field name='email' />
+                <field name="phone" />
+                <field name="user_id" />
+                <!-- <field name='activities'/> -->
+                <field name='deadline' />
+                <field name='revenue' />
+                <field name='stage_id' />
+            </tree>
+        </field>
+    </record>
+
+    <record id="crm_opportunity_view_form" model="ir.ui.view">
+        <field name="name">crm.opportunity.view.form</field>
+        <field name="model">crm.opportunity</field>
+        <field name="arch" type="xml">
+            <form string="Pipeline">
+                <header>
+                    <field name='stage_id' widget='statusbar' options="{'clickable': 1}" />
+                </header>
+                <sheet>
+                    <header>
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </header>
+                    <separator />
+                    <h2><span>$ <field name='revenue' widget='monetary' /></span> at <field
+                            name='probability' />% </h2>
+                    <separator />
+                    <group>
+                        <group col-span='2'>
+                            <field string="Contact Name" name='partner_id' />
+                            <field name='email' widget='email' />
+                            <field name="phone" widget='phone' />
+                        </group>
+                        <group col-span='2'>
+                            <field name="user_id" />
+                            <field name="expected_closing" />
+                            <field name="priority" />
+                            <field name='tag_ids' widget='many2many_tags'
+                                options="{'color_field': 'color'}" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Internal Notes">
+                            <field name="note" widget='text' />
+                        </page>
+                        <page string='Activities'>
+                            <field name="activity_ids">
+                                <tree>
+                                    <field name="type" />
+                                    <field name='create_date'/>
+                                    <field name="user_id" />
+                                    <field name="due_date" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -8,4 +8,4 @@ class LeadTaskTags(models.Model):
     ]
     
     color = fields.Integer()
-    name = fields.Char(required=True,)
+    name = fields.Char(required=True,)  

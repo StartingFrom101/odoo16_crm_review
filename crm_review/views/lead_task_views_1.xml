@@ -13,6 +13,12 @@
         action="lead_task_action"
         parent="crm_review_menu"
         sequence="10" />
+    <menuitem
+        id="create_lead_task_menu"
+        name="Create Memo"
+        action="action_create_lead_task"
+        parent="crm_review_menu"
+        sequence="20" />
 
         <record id="lead_task_view_form" model="ir.ui.view">
             <field name="name">lead.task.view.form</field>

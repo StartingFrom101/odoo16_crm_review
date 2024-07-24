@@ -57,16 +57,28 @@ class PropertyOffer(models.Model):
     property_type_id = fields.Many2one(related="property_id.property_type_id")
     
     @api.model
-    def create(self, vals):
-        # Checks if value has required fields
-        if vals.get("property_id") and vals.get("price"):
-            # Institate a property class
-            property = self.env['estate.property'].browse(vals['property_id'])
-            
-            # If items already have offer ids
-            if property.offer_ids:            
-                best_price = max(property.mapped('offer_ids.price'))
-                if float_compare(vals['price'], best_price, precision_digits=0.01) <= 0:
-                    raise UserError("Offer Price must be higher than best offer")
-            property.state = "offerreceived"
-        return super().create(vals)
+    def _create(self, vals):
+
+        for offer in vals:
+            # Checks if value has required fields
+            if offer.get("property_id") and offer.get("price"):
+                # Institate a property class
+                property = self.env['estate.property'].browse(vals['property_id'])
+                
+                # If items already have offer idst
+                if property.offer_ids:            
+                    best_price = max(property.mapped('offer_ids.price'))
+                    if float_compare(vals['price'], best_price, precision_digits=0.01) <= 0:
+                        raise UserError("Offer Price must be higher than best offer")
+                property.state = "offerreceived"
+        return super()._create(vals)     
+    
+    @api.model
+    def _unlink(self):
+        property_ids = self.mapped('property_id')
+        res = super(PropertyOffer, self).unlink()
+        for property in property_ids:
+            if not property.offer_ids:
+                if property.state == 'offerreceived':
+                    property.state = 'new'
+        return res

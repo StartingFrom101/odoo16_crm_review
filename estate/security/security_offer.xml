@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- No group has delete permissions on properties offer -->
+        <record id="estate_all_access_properties_offer" model="ir.model.access">
+            <field name="name">estate.all.access.properties.offer</field>
+            <field name="model_id" ref="model_estate_property_offer" />
+            <field name="group_id" ref="estate_group_user" />
+            <field name="perm_read" eval="1" />
+            <field name="perm_write" eval="1" />
+            <field name="perm_create" eval="1" />
+            <field name="perm_unlink" eval="0" />
+        </record>
+    </data>
+</odoo>

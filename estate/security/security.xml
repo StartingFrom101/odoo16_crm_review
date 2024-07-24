@@ -18,6 +18,8 @@
             <field name="implied_ids" eval="[(4, ref('estate_group_user'))]" />
         </record>
 
+
+
         <!-- Access rights for Real Estate Manager (full access to all objects) -->
         <record id="estate_manager_access_properties" model="ir.model.access">
             <field name="name">estate.manager.access.properties</field>
@@ -60,7 +62,9 @@
             <field name="perm_create" eval="1" />
             <field name="perm_unlink" eval="0" />
         </record>
-<!--         
+
+
+        <!--         
         Hours spent trying to fix this: 4
 
             <record id="estate_all_access_offers" model="ir.model.access">
